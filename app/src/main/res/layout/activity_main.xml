@@ -2,374 +2,163 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA"
+    android:background="#E0F7FA"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <!-- App Title -->
+        <!-- App Title & Ambience -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🐟 Fish Nutrition &amp; Omega-3 Tracker"
+            android:textColor="#006064"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <!-- Scoreboard (Points Management) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00838F"
+            android:padding="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOTAL OMEGA-3: 0 PTS"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Customer & Goal Section (Visual Details & Characters) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvCustomer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👨‍🍳 Customer: Chef Alex"
+                android:textColor="#212121"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goal: Needs high Omega-3 meal (Target: 15+ PTS)"
+                android:textColor="#D32F2F"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingTop="6dp" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected: No fish added yet"
+                android:textColor="#757575"
+                android:textSize="13sp"
+                android:paddingTop="4dp" />
+        </LinearLayout>
+
+        <!-- Fish Selection Menu (Diversity of Meals) -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🍳 50 Delicious Recipes Collection"
-            android:textColor="#212121"
-            android:textSize="24sp"
+            android:text="📋 Select Fish for Nutrition Meal:"
+            android:textColor="#006064"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="8dp" />
 
-        <!-- 1. Red Lentil Soup -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1. 🥣 Red Lentil Soup" android:textColor="#D32F2F" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 25 Min | ⚡ 180 kcal | 🌱 Soup" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Red lentils, onion, carrot, butter, flour, spices." android:textColor="#424242" android:textSize="13sp" />
+        <!-- Row 1: Palamut & Levrek -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnPalamut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🐟 Bonito (+5 PTS)"
+                android:backgroundTint="#0097A7"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnLevrek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🐟 Sea Bass (+2 PTS)"
+                android:backgroundTint="#0097A7"
+                android:layout_marginStart="4dp" />
         </LinearLayout>
 
-        <!-- 2. Classic Menemen -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2. 🍳 Classic Menemen" android:textColor="#E65100" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 220 kcal | 🍳 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Tomatoes, green peppers, eggs, olive oil, spices." android:textColor="#424242" android:textSize="13sp" />
+        <!-- Row 2: Orkinos & Sardalya -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnOrkinos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🐟 Tuna (+10 PTS)"
+                android:backgroundTint="#00838F"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnSardalya"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🐟 Sardine (+4 PTS)"
+                android:backgroundTint="#00838F"
+                android:layout_marginStart="4dp" />
         </LinearLayout>
 
-        <!-- 3. Baked Rice Pudding -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3. 🍮 Baked Rice Pudding" android:textColor="#6A1B9A" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 40 Min | ⚡ 280 kcal | 🍨 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Milk, rice, sugar, cornstarch, vanilla extract." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
+        <!-- Action Buttons -->
+        <Button
+            android:id="@+id/btnServe"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="✅ SERVE NUTRITION MEAL"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginBottom="8dp" />
 
-        <!-- 4. Chicken Caesar Salad -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4. 🥗 Chicken Caesar Salad" android:textColor="#2E7D32" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 320 kcal | 🥗 Salad" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Grilled chicken breast, romaine lettuce, croutons, parmesan, Caesar dressing." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 5. Beef Stroganoff -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5. 🥩 Beef Stroganoff" android:textColor="#8D6E63" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 35 Min | ⚡ 520 kcal | 🍖 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Beef strips, mushrooms, onions, sour cream, beef broth, egg noodles." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 6. Spaghetti Carbonara -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6. 🍝 Spaghetti Carbonara" android:textColor="#F57F17" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 450 kcal | 🍝 Pasta" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Spaghetti, eggs, guanciale/bacon, pecorino cheese, black pepper." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 7. Grilled Salmon with Herbs -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7. 🐟 Grilled Salmon with Herbs" android:textColor="#0288D1" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 380 kcal | 🐟 Seafood" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Salmon fillet, lemon, olive oil, garlic, fresh dill, salt." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 8. Mushroom Risotto -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8. 🍚 Mushroom Risotto" android:textColor="#5D4037" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 410 kcal | 🌱 Italian" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Arborio rice, wild mushrooms, vegetable stock, parmesan, butter, shallots." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 9. Vegetarian Pizza -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="9. 🍕 Vegetarian Pizza" android:textColor="#C62828" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 25 Min | ⚡ 490 kcal | 🍕 Fast Food" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Pizza dough, tomato sauce, mozzarella, bell peppers, olives, mushrooms." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 10. Tomato Basil Soup -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10. 🍅 Tomato Basil Soup" android:textColor="#D84315" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 150 kcal | 🌱 Soup" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Roasted tomatoes, fresh basil, garlic, heavy cream, olive oil." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 11. Fluffy Pancakes -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="11. 🥞 Fluffy Pancakes" android:textColor="#F57C00" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 310 kcal | 🥞 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Flour, milk, eggs, baking powder, maple syrup, butter." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 12. Guacamole &amp; Chips -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12. 🥑 Guacamole &amp; Chips" android:textColor="#33691E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 260 kcal | 🥑 Snack" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Ripe avocados, lime juice, cilantro, red onion, jalapeno, tortilla chips." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 13. Traditional Greek Salad -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="13. 🥗 Traditional Greek Salad" android:textColor="#1565C0" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 210 kcal | 🌱 Salad" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Cucumbers, tomatoes, feta cheese, kalamata olives, red onion, oregano." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 14. BBQ Chicken Wings -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="14. 🍗 BBQ Chicken Wings" android:textColor="#BF360C" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 35 Min | ⚡ 480 kcal | 🍗 Appetizer" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Chicken wings, BBQ sauce, honey, garlic powder, paprika, butter." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 15. Tacos al Pastor -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15. 🌮 Tacos al Pastor" android:textColor="#E64A19" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 390 kcal | 🌮 Mexican" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Marinated pork, pineapple slices, corn tortillas, cilantro, diced onion." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 16. Chocolate Brownies -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="16. 🍫 Chocolate Brownies" android:textColor="#3E2723" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 340 kcal | 🍨 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Dark chocolate, cocoa powder, butter, sugar, eggs, flour, walnuts." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 17. Apple Pie -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="17. 🥧 Classic Apple Pie" android:textColor="#795548" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 50 Min | ⚡ 410 kcal | 🥧 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Apples, cinnamon, brown sugar, pie crust dough, butter." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 18. Avocado Egg Toast -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18. 🥑 Avocado Egg Toast" android:textColor="#558B2F" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 290 kcal | 🍳 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Sourdough bread, mashed avocado, poached egg, chili flakes, salt." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 19. Gourmet Beef Burger -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="19. 🍔 Gourmet Beef Burger" android:textColor="#D84315" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 620 kcal | 🍔 Fast Food" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Beef patty, brioche bun, cheddar cheese, caramelized onions, burger sauce." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 20. Club Sandwich -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="20. 🥪 Classic Club Sandwich" android:textColor="#F9A825" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 430 kcal | 🥪 Lunch" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Toast bread, turkey breast, bacon, lettuce, tomato, mayo." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 21. French Onion Soup -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="21. 🧅 French Onion Soup" android:textColor="#4E342E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 45 Min | ⚡ 290 kcal | 🥣 Soup" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Caramelized onions, beef broth, baguette bread slice, gruyere cheese." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 22. Lasagna Bolognese -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22. 🥘 Lasagna Bolognese" android:textColor="#B71C1C" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 60 Min | ⚡ 580 kcal | 🍝 Pasta" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Lasagna sheets, minced beef, tomato ragu, bechamel sauce, mozzarella." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 23. Chicken Curry with Rice -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="23. 🍛 Chicken Curry with Rice" android:textColor="#FF6F00" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 490 kcal | 🍛 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Chicken breast, curry powder, coconut milk, bell peppers, basmati rice." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 24. Shrimp Pad Thai -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24. 🍜 Shrimp Pad Thai" android:textColor="#E65100" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 25 Min | ⚡ 440 kcal | 🍜 Asian" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Rice noodles, shrimp, bean sprouts, peanuts, tamarind sauce, lime." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 25. Hummus &amp; Warm Pita -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25. 🧆 Hummus &amp; Warm Pita" android:textColor="#9E9D24" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 230 kcal | 🌱 Snack" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Chickpeas, tahini, garlic, lemon juice, olive oil, pita bread." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 26. Crispy Falafel Wrap -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="26. 🥙 Crispy Falafel Wrap" android:textColor="#33691E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 360 kcal | 🌱 Vegetarian" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Fried falafel balls, flatbread, tahini dressing, lettuce, tomatoes, pickles." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 27. Strawberry Banana Smoothie -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="27. 🥤 Strawberry Smoothie" android:textColor="#AD1457" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 5 Min | ⚡ 190 kcal | 🥤 Beverage" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Fresh strawberries, banana, Greek yogurt, almond milk, honey." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 28. Classic Tiramisu -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="28. ☕ Classic Tiramisu" android:textColor="#4E342E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 25 Min | ⚡ 370 kcal | 🍨 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Ladyfingers, espresso, mascarpone cheese, cocoa powder, sugar." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 29. New York Cheesecake -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="29. 🍰 New York Cheesecake" android:textColor="#F57F17" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 60 Min | ⚡ 450 kcal | 🍨 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Cream cheese, graham cracker crust, sour cream, sugar, berry sauce." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 30. Lemon Garlic Butter Shrimp -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30. 🦐 Lemon Garlic Shrimp" android:textColor="#0277BD" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 280 kcal | 🦐 Seafood" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Jumbo shrimp, garlic, butter, fresh parsley, lemon juice, white wine." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 31. Crispy Fish and Chips -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="31. 🐟 Fish and Chips" android:textColor="#01579B" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 540 kcal | 🐟 Seafood" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Cod fillets, batter mixture, french fries, tartar sauce, lemon wedges." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 32. Shepherd's Pie -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="32. 🥧 Shepherd's Pie" android:textColor="#3E2723" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 50 Min | ⚡ 490 kcal | 🍖 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Minced lamb or beef, peas, carrots, mashed potato topping, cheddar." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 33. Shakshuka -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="33. 🍳 Shakshuka" android:textColor="#BF360C" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 240 kcal | 🍳 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Poached eggs, spiced tomato pepper sauce, cumin, paprika, fresh parsley." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 34. Caprese Salad -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="34. 🍅 Caprese Salad" android:textColor="#2E7D32" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 220 kcal | 🌱 Salad" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Fresh mozzarella slices, ripe tomatoes, basil leaves, balsamic glaze, olive oil." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 35. Minestrone Soup -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="35. 🍲 Minestrone Soup" android:textColor="#C62828" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 35 Min | ⚡ 170 kcal | 🌱 Soup" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Mixed vegetables, kidney beans, ditalini pasta, tomato broth, parmesan." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 36. Stuffed Bell Peppers -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="36. 🫑 Stuffed Bell Peppers" android:textColor="#1B5E20" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 40 Min | ⚡ 330 kcal | 🍖 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Bell peppers, ground beef, rice, tomato sauce, garlic, melted cheese." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 37. Eggplant Parmesan -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="37. 🍆 Eggplant Parmesan" android:textColor="#4A148C" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 45 Min | ⚡ 390 kcal | 🌱 Italian" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Fried eggplant slices, marinara sauce, mozzarella, breadcrumbs, parmesan." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 38. Crispy Chicken Parmesan -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="38. 🍗 Chicken Parmesan" android:textColor="#880E4F" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 35 Min | ⚡ 510 kcal | 🍗 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Breaded chicken cutlet, marinara sauce, melted mozzarella, spaghetti side." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 39. Spicy Beef Tacos -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="39. 🌮 Spicy Beef Tacos" android:textColor="#DD2C00" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 20 Min | ⚡ 410 kcal | 🌮 Mexican" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Seasoned ground beef, taco shells, shredded lettuce, salsa, sour cream." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 40. Cheese Quesadilla -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="40. 🧀 Cheese Quesadilla" android:textColor="#FF8F00" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 320 kcal | 🌮 Snack" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Flour tortillas, Monterey Jack cheese, cheddar, pico de gallo, guacamole." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 41. Cinnamon Rolls -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="41. 🍥 Cinnamon Rolls" android:textColor="#5D4037" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 45 Min | ⚡ 380 kcal | 🍨 Bakery" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Yeast dough, ground cinnamon, brown sugar, cream cheese glaze." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 42. Blueberry Muffins -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="42. 🫐 Blueberry Muffins" android:textColor="#311B92" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 25 Min | ⚡ 260 kcal | 🍨 Bakery" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Fresh blueberries, flour, sugar, butter, eggs, lemon zest." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 43. French Toast with Berries -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="43. 🍞 French Toast with Berries" android:textColor="#E65100" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 15 Min | ⚡ 310 kcal | 🍳 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Thick brioche bread, egg custard mix, butter, fresh berries, powdered sugar." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 44. Omelette Supreme -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="44. 🍳 Omelette Supreme" android:textColor="#F57F17" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 270 kcal | 🍳 Breakfast" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: 3 eggs, spinach, mushrooms, ham, cheddar cheese, chives." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 45. Chicken Caesar Wrap -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="45. 🌯 Chicken Caesar Wrap" android:textColor="#33691E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 380 kcal | 🌯 Lunch" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Tortilla wrap, grilled chicken, romaine, parmesan, Caesar dressing." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 46. Creamy Pumpkin Soup -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="46. 🎃 Creamy Pumpkin Soup" android:textColor="#E65100" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 30 Min | ⚡ 160 kcal | 🌱 Soup" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Roasted pumpkin puree, nutmeg, heavy cream, vegetable broth, pumpkin seeds." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 47. Slow Cooked BBQ Beef Ribs -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="47. 🍖 BBQ Beef Ribs" android:textColor="#3E2723" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 120 Min | ⚡ 680 kcal | 🍖 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Beef ribs, smoky BBQ glaze, brown sugar rub, garlic powder." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 48. Roasted Turkey Sandwich -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="48. 🥪 Turkey Cranberry Sandwich" android:textColor="#880E4F" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 10 Min | ⚡ 350 kcal | 🥪 Lunch" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Whole wheat bread, roasted turkey breast, cranberry sauce, swiss cheese, arugula." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 49. Swedish Meatballs -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="49. 🧆 Swedish Meatballs" android:textColor="#4E342E" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 35 Min | ⚡ 520 kcal | 🍖 Main Dish" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Seasoned meatballs, creamy brown gravy, lingonberry jam, mashed potatoes." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- 50. Vanilla Ice Cream Sundae -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="14dp" android:elevation="3dp" android:layout_marginBottom="24dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="50. 🍨 Vanilla Ice Cream Sundae" android:textColor="#1565C0" android:textSize="18sp" android:textStyle="bold" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱️ 5 Min | ⚡ 290 kcal | 🍨 Dessert" android:textColor="#757575" android:textSize="12sp" android:paddingBottom="4dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ingredients: Vanilla bean ice cream, chocolate fudge syrup, whipped cream, maraschino cherry." android:textColor="#424242" android:textSize="13sp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnNextCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔄 NEXT CUSTOMER"
+            android:backgroundTint="#0288D1" />
 
     </LinearLayout>
 </ScrollView>
