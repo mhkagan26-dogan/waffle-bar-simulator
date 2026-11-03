@@ -8,139 +8,159 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private var totalChefScore = 0
-    private var wafflesServedCount = 0
-
-    private var currentWafflePoints = 0
-    private val currentIngredients = mutableListOf<String>()
-    private var hasBase = false
-
+    private var score = 0
+    private var lives = 3
     private var customerIndex = 0
 
-    private val customerNames = arrayOf(
-        "👤 Emily (Berry Lover)",
-        "👤 Marco (Chocolate Addict)",
-        "👤 Chef Pierre (Gourmet Judge)"
-    )
+    private var selectedBase = ""
+    private val selectedToppings = mutableListOf<String>()
 
-    private val customerGoals = arrayOf(
-        "Order Goal: Wants Strawberry (+10 Bonus PTS)",
-        "Order Goal: Wants Nutella or Choco Base (+10 Bonus PTS)",
-        "Order Goal: High value waffle target 25+ PTS (+15 Bonus PTS)"
-    )
+    // Customer Data
+    private val avatars = arrayOf("👧", "👨‍🍳", "🧔", "👩‍🦰")
+    private val names = arrayOf("Maya", "Chef Alex", "Baron", "Elena")
+    private val targetBases = arrayOf("Classic Waffle", "Choco Waffle", "Red Velvet Waffle", "Classic Waffle")
+    private val targetFruits = arrayOf("Strawberry", "Banana", "Strawberry", "Banana")
+    private val targetSauces = arrayOf("Nutella", "Nutella", "Nutella", "Strawberry")
 
-    private lateinit var tvTotalScore: TextView
-    private lateinit var tvWaffleCount: TextView
-    private lateinit var tvCustomer: TextView
-    private lateinit var tvOrderGoal: TextView
-    private lateinit var tvCurrentBuild: TextView
-    private lateinit var tvCurrentPoints: TextView
+    private lateinit var tvScore: TextView
+    private lateinit var tvLives: TextView
+    private lateinit var tvCustomerAvatar: TextView
+    private lateinit var tvCustomerName: TextView
+    private lateinit var tvOrderBubble: TextView
+    private lateinit var tvPlateBase: TextView
+    private lateinit var tvPlateToppings: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvTotalScore = findViewById(R.id.tvTotalScore)
-        tvWaffleCount = findViewById(R.id.tvWaffleCount)
-        tvCustomer = findViewById(R.id.tvCustomer)
-        tvOrderGoal = findViewById(R.id.tvOrderGoal)
-        tvCurrentBuild = findViewById(R.id.tvCurrentBuild)
-        tvCurrentPoints = findViewById(R.id.tvCurrentPoints)
+        tvScore = findViewById(R.id.tvScore)
+        tvLives = findViewById(R.id.tvLives)
+        tvCustomerAvatar = findViewById(R.id.tvCustomerAvatar)
+        tvCustomerName = findViewById(R.id.tvCustomerName)
+        tvOrderBubble = findViewById(R.id.tvOrderBubble)
+        tvPlateBase = findViewById(R.id.tvPlateBase)
+        tvPlateToppings = findViewById(R.id.tvPlateToppings)
 
         val btnClassicBase = findViewById<Button>(R.id.btnClassicBase)
         val btnChocoBase = findViewById<Button>(R.id.btnChocoBase)
-        val btnBubbleBase = findViewById<Button>(R.id.btnBubbleBase)
+        val btnRedBase = findViewById<Button>(R.id.btnRedBase)
 
         val btnStrawberry = findViewById<Button>(R.id.btnStrawberry)
         val btnBanana = findViewById<Button>(R.id.btnBanana)
-        val btnKiwi = findViewById<Button>(R.id.btnKiwi)
-
         val btnNutella = findViewById<Button>(R.id.btnNutella)
-        val btnMaple = findViewById<Button>(R.id.btnMaple)
-        val btnIceCream = findViewById<Button>(R.id.btnIceCream)
 
         val btnServe = findViewById<Button>(R.id.btnServe)
         val btnClear = findViewById<Button>(R.id.btnClear)
-        val btnNextCustomer = findViewById<Button>(R.id.btnNextCustomer)
+        val btnNewGame = findViewById<Button>(R.id.btnNewGame)
 
-        btnClassicBase.setOnClickListener { addIngredient("Classic Base", 5, true) }
-        btnChocoBase.setOnClickListener { addIngredient("Choco Base", 8, true) }
-        btnBubbleBase.setOnClickListener { addIngredient("Bubble Base", 10, true) }
+        // Set Bases
+        btnClassicBase.setOnClickListener { setBase("Classic Waffle", "🧇") }
+        btnChocoBase.setOnClickListener { setBase("Choco Waffle", "🍫🧇") }
+        btnRedBase.setOnClickListener { setBase("Red Velvet Waffle", "🔴🧇") }
 
-        btnStrawberry.setOnClickListener { addIngredient("Strawberry", 6, false) }
-        btnBanana.setOnClickListener { addIngredient("Banana", 4, false) }
-        btnKiwi.setOnClickListener { addIngredient("Kiwi", 5, false) }
+        // Add Toppings
+        btnStrawberry.setOnClickListener { addTopping("Strawberry", "🍓") }
+        btnBanana.setOnClickListener { addTopping("Banana", "🍌") }
+        btnNutella.setOnClickListener { addTopping("Nutella", "🍫") }
 
-        btnNutella.setOnClickListener { addIngredient("Nutella", 7, false) }
-        btnMaple.setOnClickListener { addIngredient("Maple Syrup", 5, false) }
-        btnIceCream.setOnClickListener { addIngredient("Ice Cream", 8, false) }
+        btnServe.setOnClickListener { serveOrder() }
+        btnClear.setOnClickListener { clearPlate() }
+        btnNewGame.setOnClickListener { resetGame() }
 
-        btnServe.setOnClickListener {
-            if (!hasBase) {
-                Toast.makeText(this, "Please select a Waffle Base first!", Toast.LENGTH_SHORT).show()
-            } else {
-                var bonus = 0
-                when (customerIndex) {
-                    0 -> if (currentIngredients.contains("Strawberry")) bonus = 10
-                    1 -> if (currentIngredients.contains("Nutella") || currentIngredients.contains("Choco Base")) bonus = 10
-                    2 -> if (currentWafflePoints >= 25) bonus = 15
-                }
-
-                val earned = currentWafflePoints + bonus
-                totalChefScore += earned
-                wafflesServedCount++
-
-                tvTotalScore.text = "TOTAL CHEF SCORE: $totalChefScore PTS"
-                tvWaffleCount.text = "Waffles Served: $wafflesServedCount"
-
-                if (bonus > 0) {
-                    Toast.makeText(this, "PERFECT ORDER! +$bonus Bonus PTS Added!", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this, "Waffle Served! +$earned PTS", Toast.LENGTH_SHORT).show()
-                }
-
-                resetWafflePlate()
-            }
-        }
-
-        btnClear.setOnClickListener {
-            resetWafflePlate()
-            Toast.makeText(this, "Plate Cleared!", Toast.LENGTH_SHORT).show()
-        }
-
-        btnNextCustomer.setOnClickListener {
-            customerIndex = (customerIndex + 1) % customerNames.size
-            tvCustomer.text = customerNames[customerIndex]
-            tvOrderGoal.text = customerGoals[customerIndex]
-            resetWafflePlate()
-        }
+        loadCustomer()
     }
 
-    private fun updateBuildDisplay() {
-        if (currentIngredients.isEmpty()) {
-            tvCurrentBuild.text = "Current Plate: Empty Waffle Plate"
-        } else {
-            tvCurrentBuild.text = "Plate: " + currentIngredients.joinToString(", ")
-        }
-        tvCurrentPoints.text = "Waffle Value: $currentWafflePoints PTS"
+    private fun setBase(baseName: String, emoji: String) {
+        if (lives <= 0) return
+        selectedBase = baseName
+        tvPlateBase.text = emoji
+        updatePlateUI()
     }
 
-    private fun resetWafflePlate() {
-        currentWafflePoints = 0
-        currentIngredients.clear()
-        hasBase = false
-        updateBuildDisplay()
-    }
-
-    private fun addIngredient(name: String, pts: Int, isBase: Boolean) {
-        if (isBase && hasBase) {
-            Toast.makeText(this, "Base already selected!", Toast.LENGTH_SHORT).show()
+    private fun addTopping(toppingName: String, emoji: String) {
+        if (lives <= 0) return
+        if (selectedBase.isEmpty()) {
+            Toast.makeText(this, "Select a Waffle Base first!", Toast.LENGTH_SHORT).show()
             return
         }
-        if (isBase) hasBase = true
+        if (!selectedToppings.contains(toppingName)) {
+            selectedToppings.add(toppingName)
+            updatePlateUI()
+        }
+    }
 
-        currentIngredients.add(name)
-        currentWafflePoints += pts
-        updateBuildDisplay()
+    private fun updatePlateUI() {
+        if (selectedBase.isEmpty()) {
+            tvPlateToppings.text = "Select ingredients below..."
+        } else {
+            val toppingsStr = if (selectedToppings.isEmpty()) "Plain Base" else selectedToppings.joinToString(" + ")
+            tvPlateToppings.text = "$selectedBase\n($toppingsStr)"
+        }
+    }
+
+    private fun clearPlate() {
+        selectedBase = ""
+        selectedToppings.clear()
+        tvPlateBase.text = "🍽️ EMPTY"
+        updatePlateUI()
+    }
+
+    private fun loadCustomer() {
+        tvCustomerAvatar.text = avatars[customerIndex]
+        tvCustomerName.text = "Customer: ${names[customerIndex]}"
+        tvOrderBubble.text = "💬 'I want a ${targetBases[customerIndex]} with ${targetFruits[customerIndex]} & ${targetSauces[customerIndex]}!'"
+        clearPlate()
+    }
+
+    private fun serveOrder() {
+        if (lives <= 0) return
+
+        if (selectedBase.isEmpty()) {
+            Toast.makeText(this, "The plate is empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val correctBase = targetBases[customerIndex]
+        val correctFruit = targetFruits[customerIndex]
+        val correctSauce = targetSauces[customerIndex]
+
+        val isMatch = (selectedBase == correctBase) &&
+                selectedToppings.contains(correctFruit) &&
+                selectedToppings.contains(correctSauce)
+
+        if (isMatch) {
+            score += 25
+            Toast.makeText(this, "PERFECT WAFFLE! +25 PTS 🌟", Toast.LENGTH_SHORT).show()
+        } else {
+            lives--
+            Toast.makeText(this, "WRONG ORDER! Lost 1 Heart 💔", Toast.LENGTH_SHORT).show()
+        }
+
+        tvScore.text = "SCORE: $score"
+        tvLives.text = when (lives) {
+            3 -> "❤️ ❤️ ❤️"
+            2 -> "❤️ ❤️ 🖤"
+            1 -> "❤️ 🖤 🖤"
+            else -> "🖤 🖤 🖤"
+        }
+
+        if (lives > 0) {
+            customerIndex = (customerIndex + 1) % names.size
+            loadCustomer()
+        } else {
+            tvOrderBubble.text = "💀 GAME OVER! Press RESTART to try again."
+            Toast.makeText(this, "Game Over! Final Score: $score", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun resetGame() {
+        score = 0
+        lives = 3
+        customerIndex = 0
+        tvScore.text = "SCORE: 0"
+        tvLives.text = "❤️ ❤️ ❤️"
+        loadCustomer()
+        Toast.makeText(this, "New Game Started!", Toast.LENGTH_SHORT).show()
     }
 }
