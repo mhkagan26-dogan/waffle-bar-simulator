@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B0F0C"
-    android:padding="12dp">
+    android:background="#120A07"
+    android:padding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +12,32 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Top Bar: Score & Lives -->
+        <!-- 1. RESTAURANT AWNING / TENTE BANNER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B71C1C"
+            android:padding="8dp"
+            android:gravity="center"
+            android:elevation="4dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎪 WAFFLE BAR CAFE &amp; DINER 🎪"
+                android:textColor="#FFF8E1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 2. TOP BAR: SCORE & LIVES (Diner Dashboard) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#3A2019"
-            android:padding="10dp"
+            android:background="#2E1B14"
+            android:padding="8dp"
             android:layout_marginBottom="10dp">
 
             <TextView
@@ -28,7 +47,7 @@
                 android:layout_weight="1"
                 android:text="SCORE: 0"
                 android:textColor="#FFD54F"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -36,274 +55,313 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="❤️ ❤️ ❤️"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
-        <!-- CUSTOMER CARD -->
+        <!-- 3. RESTAURANT BOOTH / CUSTOMER WINDOW -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="#FFF8E1"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#3E2723"
             app:cardElevation="6dp"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:gravity="center_vertical">
+                android:orientation="vertical"
+                android:padding="2dp">
 
+                <!-- Window Frame Title -->
                 <TextView
-                    android:id="@+id/tvCustomerAvatar"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:text="👧"
-                    android:textSize="42sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🪟 CUSTOMER ORDER WINDOW"
+                    android:textColor="#FFB74D"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
                     android:gravity="center"
-                    android:background="#FFE0B2" />
+                    android:paddingTop="2dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp">
+                    android:orientation="horizontal"
+                    android:background="#FFF8E1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/tvCustomerName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Customer: Maya"
-                        android:textColor="#3E2723"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:id="@+id/tvCustomerAvatar"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="👧"
+                        android:textSize="38sp"
+                        android:gravity="center"
+                        android:background="#FFE0B2" />
 
-                    <TextView
-                        android:id="@+id/tvOrderBubble"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="💬 'Classic Waffle + 🍓 + ⚪'"
-                        android:textColor="#D84315"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:paddingTop="2dp" />
+                        android:orientation="vertical"
+                        android:paddingStart="10dp">
+
+                        <TextView
+                            android:id="@+id/tvCustomerName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Customer: Maya"
+                            android:textColor="#3E2723"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvOrderBubble"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💬 'Classic Waffle + 🍓 + ⚪'"
+                            android:textColor="#D84315"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingTop="2dp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- VISUAL WAFFLE PLATE -->
+        <!-- 4. WOODEN BAR COUNTER (Restoran Servis Tezgahı) -->
         <androidx.cardview.widget.CardView
-            android:layout_width="270dp"
-            android:layout_height="220dp"
-            app:cardCornerRadius="120dp"
-            app:cardBackgroundColor="#E0E0E0"
-            app:cardElevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#4E342E"
+            app:cardElevation="8dp"
             android:layout_marginBottom="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#FFF3E0"
-                android:padding="8dp">
+                android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/tvPlateBase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🍽️"
-                    android:textSize="55sp" />
-
-                <TextView
-                    android:id="@+id/tvPlateToppingsVisual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="32sp"
-                    android:gravity="center"
-                    android:paddingTop="2dp" />
-
-                <TextView
-                    android:id="@+id/tvPlateToppingsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select base &amp; toppings below..."
-                    android:textColor="#8D6E63"
-                    android:textSize="12sp"
+                    android:text="🪵 SERVING COUNTER"
+                    android:textColor="#D7CCC8"
+                    android:textSize="10sp"
                     android:textStyle="bold"
-                    android:paddingTop="2dp" />
+                    android:paddingBottom="4dp" />
+
+                <!-- Plate Circle on Counter -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="190dp"
+                    app:cardCornerRadius="95dp"
+                    app:cardBackgroundColor="#FFF3E0"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/tvPlateBase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🍽️"
+                            android:textSize="48sp" />
+
+                        <TextView
+                            android:id="@+id/tvPlateToppingsVisual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="28sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tvPlateToppingsText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select base &amp; toppings below..."
+                            android:textColor="#8D6E63"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:paddingTop="2dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- INGREDIENTS SELECTION -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1. Choose Waffle Base:"
-            android:textColor="#FFD54F"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
+        <!-- 5. KITCHEN PREP TRAY (Mutfak Malzeme Hazırlık Tezgahı) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="6dp">
+            android:orientation="vertical"
+            android:background="#1E100C"
+            android:padding="8dp">
 
-            <Button
-                android:id="@+id/btnClassicBase"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🧇 Classic"
-                android:backgroundTint="#8D6E63"
-                android:textSize="10sp"
-                android:layout_marginEnd="2dp" />
+                android:text="👨‍🍳 KITCHEN PREP STATION:"
+                android:textColor="#FFD54F"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
 
-            <Button
-                android:id="@+id/btnChocoBase"
-                android:layout_width="0dp"
+            <!-- Category 1: Base -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍫 Choco"
-                android:backgroundTint="#4E342E"
-                android:textSize="10sp"
-                android:layout_marginEnd="2dp" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
 
-            <Button
-                android:id="@+id/btnRedBase"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/btnClassicBase"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🧇 Classic"
+                    android:backgroundTint="#8D6E63"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="2dp" />
+
+                <Button
+                    android:id="@+id/btnChocoBase"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍫 Choco"
+                    android:backgroundTint="#4E342E"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="2dp" />
+
+                <Button
+                    android:id="@+id/btnRedBase"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔴 Red Velvet"
+                    android:backgroundTint="#B71C1C"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
+            <!-- Category 2: Fruits -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🔴 Red Velvet"
-                android:backgroundTint="#B71C1C"
-                android:textSize="9sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2. Add Fruits &amp; Bonbons:"
-            android:textColor="#FFD54F"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnStrawberry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍓 Strawb."
+                    android:backgroundTint="#C2185B"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="2dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="6dp">
+                <Button
+                    android:id="@+id/btnBanana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍌 Banana"
+                    android:backgroundTint="#F57F17"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="2dp" />
 
-            <Button
-                android:id="@+id/btnStrawberry"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/btnBonbon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍬 Bonbon"
+                    android:backgroundTint="#7B1FA2"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Category 3: Sauces -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍓 Strawb."
-                android:backgroundTint="#C2185B"
-                android:textSize="10sp"
-                android:layout_marginEnd="2dp" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
+                <Button
+                    android:id="@+id/btnNutella"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍫 Nutella"
+                    android:backgroundTint="#3E2723"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="2dp" />
+
+                <Button
+                    android:id="@+id/btnWhiteChoco"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="⚪ White Choco"
+                    android:backgroundTint="#F5F5F5"
+                    android:textColor="#3E2723"
+                    android:textSize="9sp"
+                    android:layout_marginEnd="2dp" />
+
+                <Button
+                    android:id="@+id/btnIceCream"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🍨 Ice Cream"
+                    android:backgroundTint="#0277BD"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
+            <!-- ACTION CONTROLS -->
             <Button
-                android:id="@+id/btnBanana"
-                android:layout_width="0dp"
+                android:id="@+id/btnServe"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="✅ SERVE TO CUSTOMER"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:backgroundTint="#2E7D32"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍌 Banana"
-                android:backgroundTint="#F57F17"
-                android:textSize="10sp"
-                android:layout_marginEnd="2dp" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnBonbon"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍬 Bonbon"
-                android:backgroundTint="#7B1FA2"
-                android:textSize="10sp" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🗑️ TRASH"
+                    android:backgroundTint="#C62828"
+                    android:layout_marginEnd="4dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="3. Add Sauces &amp; Extras:"
-            android:textColor="#FFD54F"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <Button
-                android:id="@+id/btnNutella"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍫 Nutella"
-                android:backgroundTint="#3E2723"
-                android:textSize="10sp"
-                android:layout_marginEnd="2dp" />
-
-            <Button
-                android:id="@+id/btnWhiteChoco"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="⚪ White Choco"
-                android:backgroundTint="#F5F5F5"
-                android:textColor="#3E2723"
-                android:textSize="9sp"
-                android:layout_marginEnd="2dp" />
-
-            <Button
-                android:id="@+id/btnIceCream"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🍨 Ice Cream"
-                android:backgroundTint="#0277BD"
-                android:textSize="9sp" />
-        </LinearLayout>
-
-        <!-- ACTION CONTROLS -->
-        <Button
-            android:id="@+id/btnServe"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="✅ SERVE WAFFLE"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:backgroundTint="#2E7D32"
-            android:layout_marginBottom="4dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnClear"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🗑️ TRASH"
-                android:backgroundTint="#C62828"
-                android:layout_marginEnd="4dp" />
-
-            <Button
-                android:id="@+id/btnNewGame"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🔄 RESTART"
-                android:backgroundTint="#0277BD"
-                android:layout_marginStart="4dp" />
+                <Button
+                    android:id="@+id/btnNewGame"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔄 RESTART"
+                    android:backgroundTint="#0277BD"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
