@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Mor çubuktaki başlığı "Waffle Bar Simulator" yapıyoruz:
+        supportActionBar?.title = "Waffle Bar Simulator"
+
         tvScore = findViewById(R.id.tvScore)
         tvLives = findViewById(R.id.tvLives)
         tvCustomerAvatar = findViewById(R.id.tvCustomerAvatar)
