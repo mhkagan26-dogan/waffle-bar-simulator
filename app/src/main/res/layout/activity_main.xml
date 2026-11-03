@@ -73,7 +73,7 @@
                 android:id="@+id/tvOrderGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Goal: Wants Strawberries or Blueberries (+10 Bonus PTS)"
+                android:text="Order Goal: Wants Strawberry (+10 Bonus PTS)"
                 android:textColor="#E65100"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -197,11 +197,11 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Category 3: Sauces & Extras -->
+        <!-- Category 3: Sauces and Extras -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3️⃣ Add Sauces &amp; Extras:"
+            android:text="3️⃣ Add Sauces and Extras:"
             android:textColor="#3E2723"
             android:textSize="15sp"
             android:textStyle="bold"
