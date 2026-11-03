@@ -12,15 +12,22 @@ class MainActivity : AppCompatActivity() {
     private var lives = 3
     private var customerIndex = 0
 
-    private var selectedBase = ""
-    private val selectedToppings = mutableListOf<String>()
+    private var selectedBaseName = ""
+    private var selectedBaseEmoji = ""
 
-    // Customer Data
+    private val selectedToppingsMap = mutableMapOf<String, String>() // Name -> Emoji
+
+    // Customers Data
     private val avatars = arrayOf("👧", "👨‍🍳", "🧔", "👩‍🦰")
     private val names = arrayOf("Maya", "Chef Alex", "Baron", "Elena")
-    private val targetBases = arrayOf("Classic Waffle", "Choco Waffle", "Red Velvet Waffle", "Classic Waffle")
-    private val targetFruits = arrayOf("Strawberry", "Banana", "Strawberry", "Banana")
-    private val targetSauces = arrayOf("Nutella", "Nutella", "Nutella", "Strawberry")
+    private val reqBases = arrayOf("Classic Waffle", "Choco Waffle", "Red Velvet Waffle", "Classic Waffle")
+    private val reqBaseEmojis = arrayOf("🧇", "🍫🧇", "🔴🧇", "🧇")
+    
+    // Requirements
+    private val reqItem1 = arrayOf("Strawberry", "Bonbon", "Strawberry", "Banana")
+    private val reqEmoji1 = arrayOf("🍓", "🍬", "🍓", "🍌")
+    private val reqItem2 = arrayOf("White Chocolate", "Nutella", "White Chocolate", "Bonbon")
+    private val reqEmoji2 = arrayOf("⚪", "🍫", "⚪", "🍬")
 
     private lateinit var tvScore: TextView
     private lateinit var tvLives: TextView
@@ -28,7 +35,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvCustomerName: TextView
     private lateinit var tvOrderBubble: TextView
     private lateinit var tvPlateBase: TextView
-    private lateinit var tvPlateToppings: TextView
+    private lateinit var tvPlateToppingsVisual: TextView
+    private lateinit var tvPlateToppingsText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,29 +48,42 @@ class MainActivity : AppCompatActivity() {
         tvCustomerName = findViewById(R.id.tvCustomerName)
         tvOrderBubble = findViewById(R.id.tvOrderBubble)
         tvPlateBase = findViewById(R.id.tvPlateBase)
-        tvPlateToppings = findViewById(R.id.tvPlateToppings)
+        tvPlateToppingsVisual = findViewById(R.id.tvPlateToppingsVisual)
+        tvPlateToppingsText = findViewById(R.id.tvPlateToppingsText)
 
+        // Base Buttons
         val btnClassicBase = findViewById<Button>(R.id.btnClassicBase)
         val btnChocoBase = findViewById<Button>(R.id.btnChocoBase)
         val btnRedBase = findViewById<Button>(R.id.btnRedBase)
 
+        // Topping Buttons
         val btnStrawberry = findViewById<Button>(R.id.btnStrawberry)
         val btnBanana = findViewById<Button>(R.id.btnBanana)
-        val btnNutella = findViewById<Button>(R.id.btnNutella)
+        val btnBonbon = findViewById<Button>(R.id.btnBonbon)
 
+        // Extras Buttons
+        val btnNutella = findViewById<Button>(R.id.btnNutella)
+        val btnWhiteChoco = findViewById<Button>(R.id.btnWhiteChoco)
+        val btnIceCream = findViewById<Button>(R.id.btnIceCream)
+
+        // Actions
         val btnServe = findViewById<Button>(R.id.btnServe)
         val btnClear = findViewById<Button>(R.id.btnClear)
         val btnNewGame = findViewById<Button>(R.id.btnNewGame)
 
-        // Set Bases
+        // Base Listeners
         btnClassicBase.setOnClickListener { setBase("Classic Waffle", "🧇") }
         btnChocoBase.setOnClickListener { setBase("Choco Waffle", "🍫🧇") }
         btnRedBase.setOnClickListener { setBase("Red Velvet Waffle", "🔴🧇") }
 
-        // Add Toppings
+        // Topping Listeners
         btnStrawberry.setOnClickListener { addTopping("Strawberry", "🍓") }
         btnBanana.setOnClickListener { addTopping("Banana", "🍌") }
+        btnBonbon.setOnClickListener { addTopping("Bonbon", "🍬") }
+
         btnNutella.setOnClickListener { addTopping("Nutella", "🍫") }
+        btnWhiteChoco.setOnClickListener { addTopping("White Chocolate", "⚪") }
+        btnIceCream.setOnClickListener { addTopping("Ice Cream", "🍨") }
 
         btnServe.setOnClickListener { serveOrder() }
         btnClear.setOnClickListener { clearPlate() }
@@ -71,67 +92,72 @@ class MainActivity : AppCompatActivity() {
         loadCustomer()
     }
 
-    private fun setBase(baseName: String, emoji: String) {
+    private fun setBase(name: String, emoji: String) {
         if (lives <= 0) return
-        selectedBase = baseName
+        selectedBaseName = name
+        selectedBaseEmoji = emoji
         tvPlateBase.text = emoji
         updatePlateUI()
     }
 
-    private fun addTopping(toppingName: String, emoji: String) {
+    private fun addTopping(name: String, emoji: String) {
         if (lives <= 0) return
-        if (selectedBase.isEmpty()) {
+        if (selectedBaseName.isEmpty()) {
             Toast.makeText(this, "Select a Waffle Base first!", Toast.LENGTH_SHORT).show()
             return
         }
-        if (!selectedToppings.contains(toppingName)) {
-            selectedToppings.add(toppingName)
-            updatePlateUI()
-        }
+        selectedToppingsMap[name] = emoji
+        updatePlateUI()
     }
 
     private fun updatePlateUI() {
-        if (selectedBase.isEmpty()) {
-            tvPlateToppings.text = "Select ingredients below..."
+        if (selectedBaseName.isEmpty()) {
+            tvPlateBase.text = "🍽️"
+            tvPlateToppingsVisual.text = ""
+            tvPlateToppingsText.text = "Select base & toppings below..."
         } else {
-            val toppingsStr = if (selectedToppings.isEmpty()) "Plain Base" else selectedToppings.joinToString(" + ")
-            tvPlateToppings.text = "$selectedBase\n($toppingsStr)"
+            tvPlateBase.text = selectedBaseEmoji
+            val visualEmojis = selectedToppingsMap.values.joinToString(" ")
+            tvPlateToppingsVisual.text = visualEmojis
+
+            val textNames = if (selectedToppingsMap.isEmpty()) "Plain Base" else selectedToppingsMap.keys.joinToString(" + ")
+            tvPlateToppingsText.text = "$selectedBaseName ($textNames)"
         }
     }
 
     private fun clearPlate() {
-        selectedBase = ""
-        selectedToppings.clear()
-        tvPlateBase.text = "🍽️ EMPTY"
+        selectedBaseName = ""
+        selectedBaseEmoji = ""
+        selectedToppingsMap.clear()
         updatePlateUI()
     }
 
     private fun loadCustomer() {
         tvCustomerAvatar.text = avatars[customerIndex]
         tvCustomerName.text = "Customer: ${names[customerIndex]}"
-        tvOrderBubble.text = "💬 'I want a ${targetBases[customerIndex]} with ${targetFruits[customerIndex]} & ${targetSauces[customerIndex]}!'"
+        tvOrderBubble.text = "💬 'Wants ${reqBases[customerIndex]} + ${reqEmoji1[customerIndex]}${reqItem1[customerIndex]} + ${reqEmoji2[customerIndex]}${reqItem2[customerIndex]}'"
         clearPlate()
     }
 
     private fun serveOrder() {
         if (lives <= 0) return
 
-        if (selectedBase.isEmpty()) {
-            Toast.makeText(this, "The plate is empty!", Toast.LENGTH_SHORT).show()
+        if (selectedBaseName.isEmpty()) {
+            Toast.makeText(this, "Plate is empty!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val correctBase = targetBases[customerIndex]
-        val correctFruit = targetFruits[customerIndex]
-        val correctSauce = targetSauces[customerIndex]
+        val targetBase = reqBases[customerIndex]
+        val targetItem1 = reqItem1[customerIndex]
+        val targetItem2 = reqItem2[customerIndex]
 
-        val isMatch = (selectedBase == correctBase) &&
-                selectedToppings.contains(correctFruit) &&
-                selectedToppings.contains(correctSauce)
+        val isMatch = (selectedBaseName == targetBase) &&
+                selectedToppingsMap.containsKey(targetItem1) &&
+                selectedToppingsMap.containsKey(targetItem2)
 
         if (isMatch) {
-            score += 25
-            Toast.makeText(this, "PERFECT WAFFLE! +25 PTS 🌟", Toast.LENGTH_SHORT).show()
+            score += 30
+            Toast.makeText(this, "PERFECT WAFFLE! +30 PTS 🌟", Toast.LENGTH_SHORT).show()
         } else {
             lives--
             Toast.makeText(this, "WRONG ORDER! Lost 1 Heart 💔", Toast.LENGTH_SHORT).show()
@@ -141,26 +167,4 @@ class MainActivity : AppCompatActivity() {
         tvLives.text = when (lives) {
             3 -> "❤️ ❤️ ❤️"
             2 -> "❤️ ❤️ 🖤"
-            1 -> "❤️ 🖤 🖤"
-            else -> "🖤 🖤 🖤"
-        }
-
-        if (lives > 0) {
-            customerIndex = (customerIndex + 1) % names.size
-            loadCustomer()
-        } else {
-            tvOrderBubble.text = "💀 GAME OVER! Press RESTART to try again."
-            Toast.makeText(this, "Game Over! Final Score: $score", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun resetGame() {
-        score = 0
-        lives = 3
-        customerIndex = 0
-        tvScore.text = "SCORE: 0"
-        tvLives.text = "❤️ ❤️ ❤️"
-        loadCustomer()
-        Toast.makeText(this, "New Game Started!", Toast.LENGTH_SHORT).show()
-    }
-}
+            1 -> "❤️ 🖤
