@@ -15,15 +15,14 @@ class MainActivity : AppCompatActivity() {
     private var selectedBaseName = ""
     private var selectedBaseEmoji = ""
 
-    private val selectedToppingsMap = mutableMapOf<String, String>() // Name -> Emoji
+    private val selectedToppingsMap = mutableMapOf<String, String>()
 
     // Customers Data
     private val avatars = arrayOf("👧", "👨‍🍳", "🧔", "👩‍🦰")
     private val names = arrayOf("Maya", "Chef Alex", "Baron", "Elena")
     private val reqBases = arrayOf("Classic Waffle", "Choco Waffle", "Red Velvet Waffle", "Classic Waffle")
     private val reqBaseEmojis = arrayOf("🧇", "🍫🧇", "🔴🧇", "🧇")
-    
-    // Requirements
+
     private val reqItem1 = arrayOf("Strawberry", "Bonbon", "Strawberry", "Banana")
     private val reqEmoji1 = arrayOf("🍓", "🍬", "🍓", "🍌")
     private val reqItem2 = arrayOf("White Chocolate", "Nutella", "White Chocolate", "Bonbon")
@@ -135,7 +134,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadCustomer() {
         tvCustomerAvatar.text = avatars[customerIndex]
         tvCustomerName.text = "Customer: ${names[customerIndex]}"
-        tvOrderBubble.text = "💬 'Wants ${reqBases[customerIndex]} + ${reqEmoji1[customerIndex]}${reqItem1[customerIndex]} + ${reqEmoji2[customerIndex]}${reqItem2[customerIndex]}'"
+        tvOrderBubble.text = "💬 'Wants ${reqBases[customerIndex]} + ${reqEmoji1[customerIndex]} ${reqItem1[customerIndex]} + ${reqEmoji2[customerIndex]} ${reqItem2[customerIndex]}'"
         clearPlate()
     }
 
@@ -167,4 +166,26 @@ class MainActivity : AppCompatActivity() {
         tvLives.text = when (lives) {
             3 -> "❤️ ❤️ ❤️"
             2 -> "❤️ ❤️ 🖤"
-            1 -> "❤️ 🖤
+            1 -> "❤️ 🖤 🖤"
+            else -> "🖤 🖤 🖤"
+        }
+
+        if (lives > 0) {
+            customerIndex = (customerIndex + 1) % names.size
+            loadCustomer()
+        } else {
+            tvOrderBubble.text = "💀 GAME OVER! Press RESTART to try again."
+            Toast.makeText(this, "Game Over! Final Score: $score", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun resetGame() {
+        score = 0
+        lives = 3
+        customerIndex = 0
+        tvScore.text = "SCORE: 0"
+        tvLives.text = "❤️ ❤️ ❤️"
+        loadCustomer()
+        Toast.makeText(this, "New Game Started!", Toast.LENGTH_SHORT).show()
+    }
+}
